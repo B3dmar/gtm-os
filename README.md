@@ -1,6 +1,6 @@
 # GTM:OS
 
-Open-source GTM workflow toolkit for [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex](https://openai.com/index/introducing-codex/), and [Cowork](https://www.anthropic.com/cowork).
+Open-source GTM workflow toolkit for [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex](https://openai.com/index/introducing-codex/), and [Claude Cowork](https://claude.ai/cowork).
 
 8 skills and 3 agents that turn your pipeline markdown into a daily GTM operating system - morning briefs, lead qualification, prospect research, personalized outreach, and pipeline analytics.
 
@@ -18,6 +18,44 @@ gtm-os install --ai claude
 # Or for Codex
 gtm-os install --ai codex
 ```
+
+### Install for Claude Cowork (manual)
+
+If you use Claude Cowork instead of Claude Code, you can add skills directly in the Cowork UI — no CLI needed.
+
+**Option A: Build and upload (recommended)**
+
+```bash
+# Install the CLI first (see above), then:
+gtm-os build-plugin
+
+# This creates a cowork-plugin/ directory with the right layout:
+# cowork-plugin/
+#   skills/today/SKILL.md
+#   skills/pipeline/SKILL.md
+#   ...
+#   agents/researcher/AGENT.md
+#   ...
+#   .claude-plugin/plugin.json
+```
+
+Then upload individual `SKILL.md` files from the `skills/` subdirectories:
+
+1. Open Cowork → **Customize** → **Skills** → click **+**
+2. Drag and drop any `SKILL.md` file into the upload dialog
+
+**Option B: Upload raw skill files (no CLI)**
+
+If you don't want to install the CLI, download `.md` files directly from [`src/gtm_os/templates/skills/`](https://github.com/B3dmar/gtm-os/tree/main/src/gtm_os/templates/skills). Before uploading, add a `name:` line to each file's frontmatter — Cowork requires both `name` and `description`:
+
+```yaml
+---
+name: today
+description: Morning brief - overdue follow-ups, due today, pipeline snapshot, priorities
+---
+```
+
+Then drag and drop into Cowork → **Customize** → **Skills** → **+**.
 
 ## Skills
 
